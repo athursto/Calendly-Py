@@ -30,10 +30,18 @@ getevent_response = requests.request("GET", getevent_url, headers=event_headers,
 
 print("response 2: "+ getevent_response.text)
 getevent_json = getevent_response.json()
+def ideal_search():
+  for item in getevent_json["collection"]:
+    if item["scheduling_url"] == "https://calendly.com/alison-metaview/30-min":
+      return item["uri"]
+
+#ideal_search() is what we use to change users
 
 url = "https://api.calendly.com/scheduling_links?owner=https://api.calendly.com/event_types/CCDI5Z3RHURRGXSV&owner_type=EventType&max_event_count=1"
-ideal_url = "https://api.calendly.com/scheduling_links?owner=" + getevent_json["collection"] + https://api.calendly.com/event_types/CCDI5Z3RHURRGXSV&owner_type=EventType&max_event_count=1"#a little stuck on how to reference this dictionary in getevent_json, because
+ideal_url = "https://api.calendly.com/scheduling_links?owner=" + ideal_search() + "&owner_type=EventType&max_event_count=1"#a little stuck on how to reference this dictionary in getevent_json, because
+print(ideal_url)
 #url generated from get request in postman
+#manual variable is getevent_json["collection"][2]["uri"] ... want to replace the 2
 payload = ""
 headers = {
   'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjM3MDA2MzAyLCJqdGkiOiI1ZjQ3NDVkZS0zNzY2LTRmOGQtODJjNi05ZWMyYmJlMDIzMTgiLCJ1c2VyX3V1aWQiOiJHRkNBRDdTQlJRRkFSRjJBIn0.w9Z9FZS2qA1LX4FR-6Mc93cpNGhzvSmlC-c37mFxrjo'
