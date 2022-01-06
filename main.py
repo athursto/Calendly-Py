@@ -47,9 +47,11 @@ def event_id_call():
   r = response.json()
   pyperclip.copy(r["resource"]["booking_url"])
 
+def calendly_generator():
+  user_id_call()
+  event_url_call()
+  event_id_call()
 
-user_id_call()
-event_url_call()
-event_id_call()
+calendly_generator()
 
 
